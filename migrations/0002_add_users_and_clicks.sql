@@ -1,0 +1,18 @@
+CREATE TABLE IF NOT EXISTS users (
+    id SERIAL PRIMARY KEY,
+    username TEXT UNIQUE NOT NULL,
+    password_hash TEXT NOT NULL,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+CREATE TABLE IF NOT EXISTS  clicks (
+    id SERIAL PRIMARY KEY,
+    link_id INTEGER NOT NULL REFERENCES links(id) ON DELETE CASCADE,
+    clicked_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    ip TEXT,
+    user_agent TEXT
+);
+
+ALTER TABLE links ADD COLUMN IF NOT EXISTS user_id INTEGER REFERENCES users(id) ON DELETE SET NULL;
+
+CREATE INDEX IF NOT EXISTS idx_clicks_link_id ON clicks(link_id);

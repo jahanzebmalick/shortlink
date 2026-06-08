@@ -1,0 +1,14 @@
+# binaries
+shortlink
+*.exe
+
+# Go
+*.test
+*.out
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
