@@ -15,7 +15,7 @@ import (
 )
 
 type authRequest struct {
-	Username string `json:"username`
+	Username string `json:"username"`
 	Password string `json:"password"`
 }
 type meResponse struct {
