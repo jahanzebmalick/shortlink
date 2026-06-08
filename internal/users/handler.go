@@ -19,7 +19,7 @@ type authRequest struct {
 	Password string `json:"password"`
 }
 type meResponse struct {
-	ID       int    `josn:"id"`
+	ID       int    `json:"id"`
 	Username string `json:"username"`
 }
 

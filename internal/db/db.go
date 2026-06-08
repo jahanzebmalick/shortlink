@@ -43,10 +43,10 @@ func RunMigrations(ctx context.Context, dir string) error {
 	for _, name := range files {
 		content, err := os.ReadFile(filepath.Join(dir, name))
 		if err != nil {
-			return fmt.Errorf("read %s: %w", err)
+			return fmt.Errorf("read %s: %w", name, err)
 		}
 		if _, err := Pool.Exec(ctx, string(content)); err != nil {
-			return fmt.Errorf("exec %s: %w", err)
+			return fmt.Errorf("exec %s: %w", name, err)
 
 		}
 		fmt.Printf("applied migration: %s\n", name)
