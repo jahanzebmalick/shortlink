@@ -22,7 +22,10 @@ func main() {
 	logger := slog.New(slog.NewJSONHandler(os.Stdout, nil))
 	slog.SetDefault(logger)
 
-	dsn := "postgres://shortlink:dev_password@localhost:5432/shortlink"
+	dsn := os.Getenv("DATABASE_URL")
+	if dsn == "" {
+		dsn = "postgres://shortlink:dev_password@localhost:5432/shortlink"
+	}
 	if err := db.Init(ctx, dsn); err != nil {
 		log.Fatal("db init:", err)
 
